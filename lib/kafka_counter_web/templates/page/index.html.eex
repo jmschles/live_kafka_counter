@@ -1,0 +1,10 @@
+<div class="box">
+  <p>"Kafka" has been said</p>
+  <h1 id="count">
+    <%= assigns.count %>
+  </h1>
+  <p>times.</p>
+</div>
+<footer>
+  <div id="polling-button">This is exciting, I want live updates!</div>
+</footer>
