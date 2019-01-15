@@ -2,7 +2,7 @@ defmodule KafkaCounterWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", KafkaCounterWeb.RoomChannel
+  channel "count:*", KafkaCounterWeb.CountChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

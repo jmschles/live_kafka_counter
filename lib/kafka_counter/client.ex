@@ -1,10 +1,10 @@
 defmodule KafkaCounter.Client do
   def increment do
-    GenServer.cast(KCStore, :increment)
+    GenServer.call(KCStore, :increment)
   end
 
   def decrement do
-    GenServer.cast(KCStore, :decrement)
+    GenServer.call(KCStore, :decrement)
   end
 
   def fetch do

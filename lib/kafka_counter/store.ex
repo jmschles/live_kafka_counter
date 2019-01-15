@@ -9,12 +9,14 @@ defmodule KafkaCounter.Store do
     {:ok, 0}
   end
 
-  def handle_cast(:increment, count) do
-    {:noreply, count + 1}
+  def handle_call(:increment, _from, count) do
+    new_count = count + 1
+    {:reply, Integer.to_string(new_count), new_count}
   end
 
-  def handle_cast(:decrement, count) do
-    {:noreply, count - 1}
+  def handle_call(:decrement, _from, count) do
+    new_count = count - 1
+    {:reply, Integer.to_string(new_count), new_count}
   end
 
   def handle_call(:fetch, _from, count) do

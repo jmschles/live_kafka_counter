@@ -9,13 +9,17 @@ defmodule KafkaCounterWeb.PageController do
   end
 
   def increment(conn, _params) do
-    Client.increment()
+    KafkaCounterWeb.Endpoint.broadcast("count:public", "count_update", %{
+      count: Client.increment()
+    })
 
     send_resp(conn, 200, "")
   end
 
   def decrement(conn, _params) do
-    Client.decrement()
+    KafkaCounterWeb.Endpoint.broadcast("count:public", "count_update", %{
+      count: Client.decrement()
+    })
 
     send_resp(conn, 200, "")
   end

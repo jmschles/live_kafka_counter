@@ -55,7 +55,23 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel("count:public", {})
+let countElement = document.querySelector('#count')
+let keys = []
+
+document.addEventListener('keydown', function(e) {
+  keys.push(e.keyCode)
+  if (keys.length > 2) { keys.shift() }
+
+  // ugh javascript
+  if (keys[0] == 17 && keys[1] == 81) { channel.push("count_update", {command: "increment"}) }
+  if (keys[0] == 17 && keys[1] == 65) { channel.push("count_update", {command: "decrement"}) }
+})
+
+channel.on("count_update", payload => {
+  countElement.innerText = payload.count
+})
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
