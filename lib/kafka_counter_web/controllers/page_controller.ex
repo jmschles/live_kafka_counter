@@ -23,4 +23,12 @@ defmodule KafkaCounterWeb.PageController do
 
     send_resp(conn, 200, "")
   end
+
+  def reset(conn, _params) do
+    KafkaCounterWeb.Endpoint.broadcast("count:public", "count_update", %{
+      count: Client.reset()
+    })
+
+    send_resp(conn, 200, "")
+  end
 end

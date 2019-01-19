@@ -10,4 +10,8 @@ defmodule KafkaCounter.Client do
   def fetch do
     GenServer.call(KCStore, :fetch)
   end
+
+  def reset do
+    GenServer.call(KCStore, :reset)
+  end
 end

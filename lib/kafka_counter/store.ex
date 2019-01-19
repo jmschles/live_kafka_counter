@@ -22,4 +22,8 @@ defmodule KafkaCounter.Store do
   def handle_call(:fetch, _from, count) do
     {:reply, Integer.to_string(count), count}
   end
+
+  def handle_call(:reset, _from, _count) do
+    {:reply, "0", 0}
+  end
 end

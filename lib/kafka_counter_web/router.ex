@@ -14,6 +14,7 @@ defmodule KafkaCounterWeb.Router do
 
     get "/increment", PageController, :increment
     get "/decrement", PageController, :decrement
+    get "/reset", PageController, :reset
     get "/", PageController, :index
   end
 end
